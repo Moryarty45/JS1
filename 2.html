@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS lesson 3</title>
+</head>
+<body>
+    <h3>2. C помощью цикла do while написать функцию вывода числа от 0 до 10. Требуется, чтобы результат выглядел так:<br>
+        Число - фраза<br>
+        0 - это ноль<br>
+        1 - нечётное число<br>
+        2 - чётное число<br>
+        3 - нечётное число<br>
+        ...<br>
+        10 - чётное число</h3>
+    <script>
+        function dowhile(){
+        var i = 0;
+        do {
+            if(i==0){
+                document.write(i++ + " - это ноль <br>");
+            }
+            else if(i%2==0){
+                document.write(i++ + " - это четное число <br>");
+            }
+            else {
+                document.write(i++ + " - это нечетное число <br>");
+            }
+        }
+        while(i<10)
+        }
+        dowhile();
+    </script>
+</body>
+</html>
