@@ -22,7 +22,7 @@
     function Slide(n){ 
       if (n==1){ 
         num++;
-        if (num==5){
+        if (num==imgAll.length){
           num=0;
         }
       } 
@@ -33,13 +33,12 @@
         } 
       } 
       document.querySelector(".big").innerHTML = "<img src=" + imgAll[num] + " onerror=errPic()>";
-      console.log(imgAll[num]);
       };
   </script>
   <div class="wrap">
-  <div class="prev" onclick="Slide(0)">&#10094;</div>
-  <div class="big"><img id="img1" src="img/big/images-1.JPG"></div>
-  <div class="next" onclick="Slide(1)">&#10095;</div>
-</div>
+    <div class="prev" onclick="Slide(0)">&#10094;</div>
+    <div class="big"><img id="img1" src="img/big/images-1.JPG"></div>
+    <div class="next" onclick="Slide(1)">&#10095;</div>
+  </div>
 </body>
 </html>
