@@ -1,22 +1,22 @@
-var items = {
-    '1'  : {
-        name: MacBook,
-        img: img/macbook.jpg,
-        cost: 2000
+var items = [
+    {
+        name: 'MacBook',
+        img: 'img/macbook.jpg',
+        price: 2000
     },
-    '2' : {
-        name: iPad,
-        img: img/ipad.jpg,
-        cost: 1000
+    {
+        name: 'iPad',
+        img: 'img/ipad.jpg',
+        price: 1000
     },
-    '3'  : {
-        name: iPhone,
-        img: img/iphone.jpg,
-        cost: 500
+    {
+        name: 'iPhone',
+        img: 'img/iphone.jpg',
+        price: 500
     },
-    '4'  : {
+    {
         name: 'Apple Watch',
-        img: img/applewatch.jpg,
-        cost: 300
-    },
-};
+        img: 'img/applewatch.jpg',
+        price: 300
+    }
+];
