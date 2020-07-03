@@ -3,27 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>JS lesson 6</title>
+    <!-- <script src="cart.js" defer></script> -->
+    <script src="shopCart.js" defer></script>
 </head>
 <body>
-  <script>
-		function f(id) {
-			var x = id.split("");
-      document.querySelector(".big").innerHTML = "<img src=img/big/images-" + x[3] + ".JPG onerror=errPic()>";
-    }
-
-    function errPic() {
-      document.querySelector(".big").innerHTML = "Картинка не может быть загружена!";
-      alert(`Ошибка загрузки!`);
-    }
-  </script>
-  <div class="big"></div>
-  <div class="small">
-    <img id="img1" src="img/small/images-1.JPG" onclick="f(this.id)">
-    <img id="img2" src="img/small/images-2.JPG" onclick="f(this.id)">
-    <img id="img3" src="img/small/images-3.JPG" onclick="f(this.id)">
-    <img id="img4" src="img/small/images-4.JPG" onclick="f(this.id)">
-    <img id="img5" src="img/small/images-5.JPG" onclick="f(this.id)">
+<div class="wrapper">
+  <h1>Магазин на диване</h1>
+<div id="shop"></div>
+  <!-- <div class="item_box">
+      <h3 class="item_title">Samsung Galaxy S10</h3>
+      <p>Цена: <span class="item_price">20</span>$</p>
+      <button class="add_item" data-id="7">Добавить в корзину</button>
   </div>
+  <div class="item_box">
+      <h3 class="item_title">LG Optimus G E100500</h3>
+      <p>Цена: <span class="item_price">100</span>$</p>
+      <button class="add_item" data-id="2">Добавить в корзину</button>
+  </div>
+  <div class="item_box">
+      <h3 class="item_title">Nokia 2110</h3>
+      <p>Цена: <span class="item_price">1000</span>$</p>
+      <button class="add_item" data-id="5">Добавить в корзину</button>
+  </div>
+  <p><button id="checkout">Оформить заказ</button> &nbsp; <button id="clear_cart">Очистить корзину</button></p>
+  <div id="cart_content"></div> -->
+</div>
 </body>
 </html>
