@@ -7,6 +7,7 @@ var direction = 'y+';
 var gameIsRunning = false; // Запущена ли игра
 var snake_timer; // Таймер змейки
 var food_timer; // Таймер для еды
+var block_timer; // Таймер для блока
 var score = 0; // Результат
 
 function init() {
@@ -60,6 +61,7 @@ function startGame() {
 
     snake_timer = setInterval(move, SNAKE_SPEED);//каждые 200мс запускаем функцию move
     setTimeout(createFood, 5000);
+    // setTimeout(createBlock, 6000);
 }
 
 /**
@@ -71,7 +73,7 @@ function respawn() {
 
     // Respawn змейки из центра
     var start_coord_x = Math.floor(FIELD_SIZE_X / 2);
-    var start_coord_y = Math.floor(FIELD_SIZE_Y / 2);
+    var start_coord_y = Math.floor(FIELD_SIZE_Y / 2);  
 
     // Голова змейки
     var snake_head = document.getElementsByClassName('cell-' + start_coord_y + '-' + start_coord_x)[0];
@@ -79,7 +81,7 @@ function respawn() {
     // Тело змейки
     var snake_tail = document.getElementsByClassName('cell-' + (start_coord_y-1) + '-' + start_coord_x)[0];
     snake_tail.setAttribute('class', snake_tail.getAttribute('class') + ' snake-unit');
-
+    
     snake.push(snake_head);
     snake.push(snake_tail);
 }
@@ -88,15 +90,16 @@ function respawn() {
  Движение змейки
  */
 function move() {
-    console.log('move',direction);
+    // console.log('move',direction);
     // Сборка классов
     var snake_head_classes = snake[snake.length-1].getAttribute('class').split(' ');
-
+    
     // Сдвиг головы
     var new_unit;
     var snake_coords = snake_head_classes[1].split('-');//преобразовали строку в массив
     var coord_y = parseInt(snake_coords[1]);
     var coord_x = parseInt(snake_coords[2]);
+    // console.log(snake[snake.length-1]);
 
     // Определяем новую точку
     if (direction == 'x-') {
@@ -114,8 +117,6 @@ function move() {
 
     // Проверки
     // 1) new_unit не часть змейки
-    // 2) Змейка не ушла за границу поля
-    // console.log(new_unit);
     if (!isSnakeUnit(new_unit)) {
         if (coord_y <= 0 && direction == 'y+'){
             new_unit = document.getElementsByClassName('cell-' + (coord_y + 19) + '-' + (coord_x))[0];
@@ -124,7 +125,6 @@ function move() {
             snake.push(new_unit);
         }
         else if (coord_x <= 0 && direction == 'x-'){
-            console.log('move',direction);
             new_unit = document.getElementsByClassName('cell-' + (coord_y) + '-' + (coord_x + 19))[0];
             new_unit.setAttribute('class', new_unit.getAttribute('class') + ' snake-unit');
             removedTail();
@@ -148,7 +148,7 @@ function move() {
         snake.push(new_unit);
 
         // Проверяем, надо ли убрать хвост
-	   if (!haveFood(new_unit)) {
+	   if (!haveFood(new_unit) && !haveBlock(new_unit)) {
             removedTail();
         }
     }
@@ -166,7 +166,7 @@ function removedTail(){
     // удаляем хвост
     removed.setAttribute('class', classes[0] + ' ' + classes[1]);
     }
-    
+
 /**
 
  Проверка на змейку
@@ -205,6 +205,23 @@ function haveFood(unit) {
 }
 
 /**
+
+ проверка на блок
+
+ */
+function haveBlock(unit) {
+    var check = false;
+
+    var unit_classes = unit.getAttribute('class').split(' ');
+    // Если блок
+    if (unit_classes.includes('block-unit')) {
+        
+        finishTheGame();
+    }
+    return check;
+}
+
+/**
  Создание еды
  */
 function createFood() {
@@ -230,6 +247,33 @@ function createFood() {
         }
     }
 }
+
+/**
+ Создание блока
+ */
+// function createBlock() {
+//     var blockCreated = false;
+
+//     while (!blockCreated) { //пока блок не создали
+//         // рандом
+//         var block_x = Math.floor(Math.random() * FIELD_SIZE_X);
+//         var block_y = Math.floor(Math.random() * FIELD_SIZE_Y)
+
+//         var block_cell = document.getElementsByClassName('cell-' + block_y + '-' + block_x)[0];
+//         var block_cell_classes = block_cell.getAttribute('class').split(' ');
+
+//         // проверка на змейку
+//         if (!block_cell_classes.includes('snake-unit')) {
+//             var classes = '';
+//             for (var i = 0; i < block_cell_classes.length; i++) {
+//                 classes += block_cell_classes[i] + ' ';
+//             }
+
+//             block_cell.setAttribute('class', classes + 'block-unit');
+//             blockCreated = true;
+//         }
+//     }
+// }
 
 /**
  Изменение направления движения змейки
